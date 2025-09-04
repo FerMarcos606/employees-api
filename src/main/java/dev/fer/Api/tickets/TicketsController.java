@@ -33,9 +33,8 @@ public class TicketsController {
     }
 
 
-    // Nuevo método para manejar la creación de tickets
-    @PostMapping // Añade esta anotación para manejar peticiones POST
-    @ResponseStatus(HttpStatus.CREATED) // Añade esta anotación
+    @PostMapping 
+    @ResponseStatus(HttpStatus.CREATED) 
     public TicketsEntity createTicket(@RequestBody TicketsEntity ticket) {
         return service.createTicket(ticket);
     }

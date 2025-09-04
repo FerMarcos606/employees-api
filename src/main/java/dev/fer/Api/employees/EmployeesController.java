@@ -29,9 +29,9 @@ public class EmployeesController {
 
     @GetMapping("")
     public List<EmployeesEntity> index() {
-        return service.getEmployees(); 
+         return service.getEmployees(); 
     }
-
+    
     @PostMapping("")
     public EmployeesDTOReponse create(@RequestBody EmployeesDTOReponse requestDto) {
         // Llama al método create del service
