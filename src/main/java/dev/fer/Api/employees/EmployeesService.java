@@ -1,6 +1,8 @@
 package dev.fer.Api.employees;
 
 import java.util.List;
+import java.util.Optional;
+
 import dev.fer.Api.exceptions.EmployeesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,10 @@ public class EmployeesService {
             return new EmployeesDTOReponse (savedEmployee.getId(), savedEmployee.getName());
         }
 
+        public Optional<EmployeesEntity> getById(Long id) {
+        return employeeRepository.findById(id);
+        
+        }
                 
         public EmployeesDTOReponse updateEmployee(Long id, EmployeesDTORequest requestDto) {
 

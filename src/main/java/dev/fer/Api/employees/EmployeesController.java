@@ -3,6 +3,7 @@ package dev.fer.Api.employees;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import dev.fer.Api.employees.dtos.EmployeesDTOReponse;
 import dev.fer.Api.employees.dtos.EmployeesDTORequest;
@@ -32,6 +34,13 @@ public class EmployeesController {
          return service.getEmployees(); 
     }
     
+        @GetMapping("{id}")
+    public EmployeesEntity getById(@PathVariable("id") Long id) {
+        return service.getById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee not found"));
+    }
+
+
     @PostMapping("")
     public EmployeesDTOReponse create(@RequestBody EmployeesDTOReponse requestDto) {
         // Llama al método create del service
